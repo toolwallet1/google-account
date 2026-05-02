@@ -20,15 +20,12 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        working-directory: account-login
         run: npm install
 
       - name: Install Playwright Chromium
-        working-directory: account-login
         run: npx playwright install chromium --with-deps
 
       - name: Run sync
-        working-directory: account-login
         env:
           ACCOUNT_1_EMAIL:    ${{ secrets.ACCOUNT_1_EMAIL }}
           ACCOUNT_1_PASSWORD: ${{ secrets.ACCOUNT_1_PASSWORD }}
