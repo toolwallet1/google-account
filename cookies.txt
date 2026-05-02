@@ -1,0 +1,72 @@
+[
+  {
+    "name": "__Host-next-auth.csrf-token",
+    "value": "c3f1e35a4346fa50100efe5cf7dae361115f94a419ae3ffdabb06850de9deb8c%7Cae219368ad445e6fb4af69b7bd17b18e910e3601aa25dd99cbd84041b4f2cfed",
+    "domain": "labs.google",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.1.262358532.1777116299",
+    "domain": ".labs.google",
+    "path": "/",
+    "expires": 1811676314.65837,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "__Secure-next-auth.callback-url",
+    "value": "https%3A%2F%2Flabs.google%2Ffx%2Ftools%2Fflow",
+    "domain": "labs.google",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "email",
+    "value": "s17424h162%40hateri122.shop",
+    "domain": "labs.google",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "EMAIL",
+    "value": "%22s17424h162%40hateri122.shop%22",
+    "domain": "labs.google",
+    "path": "/",
+    "expires": 1779708313,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ga_X2GNH8R5NS",
+    "value": "GS2.1.s1777116299$o1$g1$t1777116314$j45$l0$h987353791",
+    "domain": ".labs.google",
+    "path": "/",
+    "expires": 1811676314.762045,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "__Secure-next-auth.session-token",
+    "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..c_2e_wUKYHrWaEZ1.CIVQuD5ZM4dtFIJg9slYSkbKYfyS7OlrDTo8RKgNsovAmo-Gdd74YCLZiVJEdO8jFbaYWOTJ3OTwX6GG0AQSMi5_DWGqbaAD_OL5LLLZTZ6OHfwY2hLswnKIqx4AmFswAFr6sFoxXOK6g-iR02zm1mMrNmilKPoIn_hHgOh2KhuYjOp2yZ7rpsJ0OxySs-IIygZoUhVTAyZ_YyitdmLPRBiBEiXbJX3kaLttjxVpMSId4gyBKPIVlEBe7btu9q773yKBDoAnOr7XN9fZVrbQb2_QK-Eo_I3PkwTW6wrYzOSNVQfHyJSmUVxbzR_gFCTvojL03OYWOYaZ127l1eqEG6QQdhIq75rkCt4Lh7e4Bn8fhsHQYjQb_mpKC4u7fXsB9imKWr5K7w9KTuoPwsk3XrJ4lcSrsUkQ_Ct_DomtAuju-0Nwa8SHAnyLoiF7u2qKKBWHAhzP3hQTGiSoA-agyzCKqL1I06P-PSvxbFa98bnkxCjJzy8gm29XYxk1Y4TlLMz9ltf6Lak3cu5APxFTBLV1BdGMyL7TmWcfj_78O4JZTfdpXAipXJ0cfc9Ln0A-0pcWRKxhvJVzTdEBV9jTSKW1sr-hbZHac8ZXZBqRsXiV9eJ3a5c7aSZOb_OtifWddYJ7ghGTO0dgwFPu8EAiDPnvKU8Vl7RriqwK38zXaP89-kY4czsB7ahD22Uvkxk9NPaq3_3Cr8kaLJMypjEurEMLWUPbOpo-8qANYxRgVQIh8FWoRQ4k_FnCA51FJWrKpp2DUw7m7Wm1Agxe7h0ORdkbhet2vForDgufjO9gZFgfiTEPp0IzP6j9QZ9Ktpbr3pw3kYNg8lskO8RQ7AQet1Z3Gy1jOXWtfrm5U26kLTcyDKbAwy2AjK-a7h8v49rSgyHWWV9_4Xh_vZ9OQcOljdmK3Wu8-BNJYgqAQEGzPiL0yX4QLsvGGeHOx_t_GLB5v7RPIhBkUS5ACbC1WCercTw1kurZ9er5BZ7W.pqrblm-fri69R55F1OpKtQ",
+    "domain": "labs.google",
+    "path": "/",
+    "expires": 1779708316.308773,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  }
+]
