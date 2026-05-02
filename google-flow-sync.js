@@ -70,26 +70,33 @@ async function loginToGoogleFlow(page, context, email, password) {
   await page.waitForSelector('input[name="identifier"]', { timeout: 30000 });
   console.log('Google login page ready');
 
-  await page.fill('input[name="identifier"]', email);
-  // Click Next button for email step
-  const emailNext = await page.$('#identifierNext button, #identifierNext');
+  // Human-like typing for email
+  await page.click('input[name="identifier"]');
+  await page.waitForTimeout(500);
+  await page.type('input[name="identifier"]', email, { delay: 80 });
+  await page.waitForTimeout(800);
+  const emailNext = await page.$('#identifierNext');
   if (emailNext) await emailNext.click();
   else await page.keyboard.press('Enter');
   await page.waitForTimeout(3000);
 
   await page.waitForSelector('input[name="Passwd"]', { timeout: 15000 });
-  await page.waitForTimeout(1000);
-  await page.fill('input[name="Passwd"]', password);
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(1500);
 
-  // Click Next button for password step (more reliable than Enter)
-  const passNext = await page.$('#passwordNext button, #passwordNext');
+  // Human-like typing for password
+  await page.click('input[name="Passwd"]');
+  await page.waitForTimeout(400);
+  await page.type('input[name="Passwd"]', password, { delay: 90 });
+  await page.waitForTimeout(800);
+
+  const passNext = await page.$('#passwordNext');
+  console.log(`passwordNext button found: ${!!passNext}`);
   if (passNext) await passNext.click();
   else await page.keyboard.press('Enter');
 
   console.log('Waiting for redirect after password...');
   try {
-    await page.waitForURL(url => !url.includes('accounts.google.com/v3/signin/challenge/pwd'), { timeout: 15000 });
+    await page.waitForURL(url => !url.includes('accounts.google.com/v3/signin/challenge/pwd'), { timeout: 20000 });
   } catch {
     const stuck = page.url();
     if (stuck.includes('challenge/pwd')) throw new Error(`[${email}] Password rejected or CAPTCHA shown: ${stuck}`);
@@ -134,9 +141,8 @@ async function processAccount(account) {
   });
 
   const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    viewport:  { width: 1280, height: 800 },
-    locale:    'en-US',
+    viewport: { width: 1280, height: 800 },
+    locale:   'en-US',
   });
 
   await context.addInitScript(() => {
