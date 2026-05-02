@@ -1,0 +1,39 @@
+name: Google Flow Cookie Sync
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: account-login
+        run: npm install
+
+      - name: Install Playwright Chromium
+        working-directory: account-login
+        run: npx playwright install chromium --with-deps
+
+      - name: Run sync
+        working-directory: account-login
+        env:
+          ACCOUNT_1_EMAIL:    ${{ secrets.ACCOUNT_1_EMAIL }}
+          ACCOUNT_1_PASSWORD: ${{ secrets.ACCOUNT_1_PASSWORD }}
+          ACCOUNT_1_TOOL_ID:  ${{ secrets.ACCOUNT_1_TOOL_ID }}
+          API_URL:            ${{ secrets.API_URL }}
+          API_SECRET:         ${{ secrets.API_SECRET }}
+          LOCAL_TEST:         'false'
+        run: xvfb-run --server-args="-screen 0 1280x800x24" node google-flow-sync.js
