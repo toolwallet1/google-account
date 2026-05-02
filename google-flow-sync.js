@@ -1,4 +1,6 @@
-const { chromium } = require('playwright');
+const { chromium } = require('playwright-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+chromium.use(StealthPlugin());
 require('dotenv').config();
 const https = require('https');
 
@@ -143,10 +145,6 @@ async function processAccount(account) {
   const context = await browser.newContext({
     viewport: { width: 1280, height: 800 },
     locale:   'en-US',
-  });
-
-  await context.addInitScript(() => {
-    Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
   });
 
   const page = await context.newPage();
