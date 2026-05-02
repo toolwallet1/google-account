@@ -27,10 +27,5 @@ jobs:
 
       - name: Run sync
         env:
-          ACCOUNT_1_EMAIL:    ${{ secrets.ACCOUNT_1_EMAIL }}
-          ACCOUNT_1_PASSWORD: ${{ secrets.ACCOUNT_1_PASSWORD }}
-          ACCOUNT_1_TOOL_ID:  ${{ secrets.ACCOUNT_1_TOOL_ID }}
-          API_URL:            ${{ secrets.API_URL }}
-          API_SECRET:         ${{ secrets.API_SECRET }}
-          LOCAL_TEST:         'false'
+          LOCAL_TEST: 'false'
         run: xvfb-run --server-args="-screen 0 1280x800x24" node google-flow-sync.js
