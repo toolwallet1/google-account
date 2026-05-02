@@ -71,24 +71,46 @@ async function loginToGoogleFlow(page, context, email, password) {
   console.log('Google login page ready');
 
   await page.fill('input[name="identifier"]', email);
-  await page.keyboard.press('Enter');
-  await page.waitForTimeout(2000);
+  // Click Next button for email step
+  const emailNext = await page.$('#identifierNext button, #identifierNext');
+  if (emailNext) await emailNext.click();
+  else await page.keyboard.press('Enter');
+  await page.waitForTimeout(3000);
 
   await page.waitForSelector('input[name="Passwd"]', { timeout: 15000 });
+  await page.waitForTimeout(1000);
   await page.fill('input[name="Passwd"]', password);
-  await page.keyboard.press('Enter');
+  await page.waitForTimeout(500);
+
+  // Click Next button for password step (more reliable than Enter)
+  const passNext = await page.$('#passwordNext button, #passwordNext');
+  if (passNext) await passNext.click();
+  else await page.keyboard.press('Enter');
+
+  console.log('Waiting for redirect after password...');
+  try {
+    await page.waitForURL(url => !url.includes('accounts.google.com/v3/signin/challenge/pwd'), { timeout: 15000 });
+  } catch {
+    const stuck = page.url();
+    if (stuck.includes('challenge/pwd')) throw new Error(`[${email}] Password rejected or CAPTCHA shown: ${stuck}`);
+  }
+  console.log(`After password: ${page.url()}`);
 
   console.log('Waiting for session-token...');
   const start = Date.now();
   let hasToken = false;
   while (Date.now() - start < 60000) {
-    console.log(`URL: ${page.url()}`);
+    const curUrl = page.url();
+    console.log(`URL: ${curUrl}`);
     const cookies = await context.cookies();
     hasToken = cookies.some(c => c.name === '__Secure-next-auth.session-token');
     if (hasToken) break;
-    await page.waitForTimeout(2000);
+    if (curUrl.includes('accounts.google.com') && (curUrl.includes('challenge') || curUrl.includes('signin'))) {
+      console.log('Still on Google auth page, waiting...');
+    }
+    await page.waitForTimeout(3000);
   }
-  if (!hasToken) throw new Error(`[${email}] session-token not found`);
+  if (!hasToken) throw new Error(`[${email}] session-token not found — final URL: ${page.url()}`);
 
   // Load Flow page to capture all labs.google cookies
   await page.goto('https://labs.google/fx/tools/flow', { waitUntil: 'domcontentloaded' });
